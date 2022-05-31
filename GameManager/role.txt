@@ -1,0 +1,10 @@
+1. represent the board (as a tree).
+2. initiate the board (object).
+3. check for valid moves.
+4. change the board state. (in the representation)
+5. decide when the game is over, who has won.
+6. change mid game turn from user to PC
+
+---UI wise--- (Loay)
+
+when deciding to move: handles input from user and reflect changes to the board
