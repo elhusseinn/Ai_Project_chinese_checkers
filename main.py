@@ -1,9 +1,8 @@
 from GameManager import board as BD
  
 board=BD.init_board()
-WinStatus=-1
 #while(True):
      #while(True):
     
-arr=BD.getAvailableMoves(board,8,12)
+arr=BD.getAvailableMoves(board,11,23)
 print(arr)

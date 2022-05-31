@@ -21,72 +21,72 @@ def init_board():
     board[3][13] = 1
     board[3][15] = 1
 
-# Yellow is 2
+# playground2
 
-    board[4][18] = 2
-    board[4][20] = 2
-    board[4][22] = 2
-    board[4][24] = 2
-    board[5][19] = 2
-    board[5][21] = 2
-    board[5][23] = 2
-    board[6][20] = 2
-    board[6][22] = 2
-    board[7][21] = 2
-
-
-# Orange is 3
-
-    board[9][21] = 3
-    board[10][20] = 3
-    board[10][22] = 3
-    board[11][19] = 3
-    board[11][21] = 3
-    board[11][23] = 3
-    board[12][18] = 3
-    board[12][20] = 3
-    board[12][22] = 3
-    board[12][24] = 3
+    board[4][18] = 0
+    board[4][20] = 0
+    board[4][22] = 0
+    board[4][24] = 0
+    board[5][19] = 0
+    board[5][21] = 0
+    board[5][23] = 0
+    board[6][20] = 0
+    board[6][22] = 0
+    board[7][21] = 0
 
 
-# Red is 4 To PC
+# playground3
 
-    board[13][9] = 4
-    board[13][11] = 4
-    board[13][13] = 4
-    board[13][15] = 4
-    board[14][10] = 4
-    board[14][12] = 4
-    board[14][14] = 4
-    board[15][11] = 4
-    board[15][13] = 4
-    board[16][12] = 4
-
-# Purple is 5
-    board[9][3] = 5
-    board[10][2] = 5
-    board[10][4] = 5
-    board[11][1] = 5
-    board[11][3] = 5
-    board[11][5] = 5
-    board[12][0] = 5
-    board[12][2] = 5
-    board[12][4] = 5
-    board[12][6] = 5
+    board[9][21] =0
+    board[10][20] =0
+    board[10][22] =0
+    board[11][19] =0
+    board[11][21] =0
+    board[11][23] =0
+    board[12][18] =0
+    board[12][20] =0
+    board[12][22] =0
+    board[12][24] =0
 
 
-# Blue is 6
+# Red is 2 To PC
 
-    board[4][0] = 6
-    board[4][2] = 6
-    board[4][4] = 6
-    board[4][6] = 6
-    board[5][1] = 6
-    board[5][3] = 6
-    board[5][5] = 6
-    board[6][2] = 6
-    board[6][4] = 6
-    board[7][3] = 6
+    board[13][9] = 2
+    board[13][11] = 2
+    board[13][13] = 2
+    board[13][15] = 2
+    board[14][10] = 2
+    board[14][12] = 2
+    board[14][14] = 2
+    board[15][11] = 2
+    board[15][13] = 2
+    board[16][12] = 2
+
+# playground5
+    board[9][3] =0
+    board[10][2] =0
+    board[10][4] =0
+    board[11][1] =0
+    board[11][3] =0
+    board[11][5] =0
+    board[12][0] =0
+    board[12][2] =0
+    board[12][4] =0
+    board[12][6] =0
+
+
+# playground6
+
+    board[4][0] =0
+    board[4][2] =0
+    board[4][4] =0
+    board[4][6] =0
+    board[5][1] =0
+    board[5][3] =0
+    board[5][5] =0
+    board[6][2] =0
+    board[6][4] =0
+    board[7][3] =0
 
 
 # play ground space initial is 0
@@ -101,8 +101,8 @@ def init_board():
 # level 5
     board[5][7] = 0
     board[5][9] = 0
-    board[5][11] = 1
-    board[5][13] = 1
+    board[5][11] = 0
+    board[5][13] = 0
     board[5][15] = 0
     board[5][17] = 0
 # level 6
@@ -118,7 +118,7 @@ def init_board():
     board[7][7] = 0
     board[7][9] = 0
     board[7][11] = 0
-    board[7][13] = 1
+    board[7][13] = 0
     board[7][15] = 0
     board[7][17] = 0
     board[7][19] = 0
@@ -127,7 +127,7 @@ def init_board():
     board[8][6] = 0
     board[8][8] = 0
     board[8][10] = 0
-    board[8][12] = 1
+    board[8][12] = 0
     board[8][14] = 0
     board[8][16] = 0
     board[8][18] = 0
@@ -175,7 +175,7 @@ def checkWin(board):
 
       return 1
     # if all (4)Red colors is on the other side then Pc win
-    elif board[0][12] == 4 and board[1][11] == 4 and board[1][13] == 4 and board[2][10] == 4 and board[2][12] == 4 and board[2][14] == 4 and board[3][9] == 4 and board[3][11] == 4 and board[3][13] == 4 and board[3][15] == 4:
+    elif board[0][12] == 2 and board[1][11] == 2 and board[1][13] == 2 and board[2][10] == 2 and board[2][12] == 2 and board[2][14] == 2 and board[3][9] == 2 and board[3][11] == 2 and board[3][13] == 2 and board[3][15] == 2:
 
         return 0
 
@@ -192,7 +192,7 @@ def getJumpMoves(board,backlevel,backindex,level,index):
     newIndex=index+1
     if newLevel==backlevel and newIndex==backindex :
         skip
-    elif board[newLevel][newIndex]==1 or board[newLevel][newIndex]==4 :
+    elif board[newLevel][newIndex]==1 or board[newLevel][newIndex]==2 :
         newLevel=newLevel-1
         newIndex=newIndex+1 #get the topRight of TopRight
         if board[newLevel][newIndex]==0:
@@ -206,7 +206,7 @@ def getJumpMoves(board,backlevel,backindex,level,index):
     newIndex=index+2
     if newLevel==backlevel and newIndex==backindex :
             skip
-    elif board[newLevel][newIndex]==1 or board[newLevel][newIndex]==4 :    
+    elif board[newLevel][newIndex]==1 or board[newLevel][newIndex]==2 :    
          newLevel=newLevel
          newIndex=newIndex+2 #get the Right of Right
          if board[newLevel][newIndex]==0:
@@ -215,13 +215,13 @@ def getJumpMoves(board,backlevel,backindex,level,index):
               arrOfMoves.extend(newArrOfMoves)
 
 
-
+    
     #DownRight
     newLevel=level+1
     newIndex=index+1
     if newLevel==backlevel and newIndex==backindex :
             skip
-    elif board[newLevel][newIndex]==1 or board[newLevel][newIndex]==4 : 
+    elif board[newLevel][newIndex]==1 or board[newLevel][newIndex]==2 : 
          newLevel=newLevel+1
          newIndex=newIndex+1 #get the DownRight of DownRight
          if board[newLevel][newIndex]==0:
@@ -236,8 +236,8 @@ def getJumpMoves(board,backlevel,backindex,level,index):
     newIndex=index-1
     if newLevel==backlevel and newIndex==backindex :
             skip
-    elif board[newLevel][newIndex]==1 or board[newLevel][newIndex]==4 : 
-         n#get the TopLeft of TopLeftewLevel=newLevel-1
+    elif board[newLevel][newIndex]==1 or board[newLevel][newIndex]==2 : 
+         #get the TopLeft of TopLeftewLevel=newLevel-1
          newIndex=newIndex-1 
          if board[newLevel][newIndex]==0:
               arrOfMoves.append([newLevel,newIndex])
@@ -251,7 +251,7 @@ def getJumpMoves(board,backlevel,backindex,level,index):
     newIndex=index-2
     if newLevel==backlevel and newIndex==backindex :
             skip
-    elif board[newLevel][newIndex]==1 or board[newLevel][newIndex]==4 : 
+    elif board[newLevel][newIndex]==1 or board[newLevel][newIndex]==2 : 
          newLevel=newLevel
          newIndex=newIndex-2 #get the Left of Left
          if board[newLevel][newIndex]==0:
@@ -265,7 +265,7 @@ def getJumpMoves(board,backlevel,backindex,level,index):
     newIndex=index-1
     if newLevel==backlevel and newIndex==backindex :
         skip 
-    elif board[newLevel][newIndex]==1 or board[newLevel][newIndex]==4 : 
+    elif board[newLevel][newIndex]==1 or board[newLevel][newIndex]==2 : 
            newLevel=newLevel+1
            newIndex=newIndex-1 #get the DownLeft of DownLeft
            if board[newLevel][newIndex]==0:
@@ -282,12 +282,16 @@ def getAvailableMoves(board,level,index):
     #TopRight
     newLevel=level-1
     newIndex=index+1
-    if board[newLevel][newIndex]==0:
+    if newLevel>16 or newIndex>24:
+        skip
+    elif board[newLevel][newIndex]==0:
         arrOfMoves.append([newLevel,newIndex])
-    elif board[newLevel][newIndex]==1 or board[newLevel][newIndex]==4 :#check top right if have value
+    elif board[newLevel][newIndex]==1 or board[newLevel][newIndex]==2 :#check top right if have value
         newLevel=newLevel-1
         newIndex=newIndex+1 #get the topRight of TopRight
-        if board[newLevel][newIndex]==0:
+        if newLevel>16 or newIndex>24:
+            skip
+        elif board[newLevel][newIndex]==0:
            arrOfMoves.append([newLevel,newIndex])
            newArrOfMoves=getJumpMoves(board,newLevel+1,newIndex-1,newLevel,newIndex)
            arrOfMoves.extend(newArrOfMoves)
@@ -295,12 +299,16 @@ def getAvailableMoves(board,level,index):
     #Right
     newLevel=level
     newIndex=index+2
-    if board[newLevel][newIndex]==0:
+    if newLevel>16 or newIndex>24:
+        skip
+    elif board[newLevel][newIndex]==0:
         arrOfMoves.append([newLevel,newIndex])
-    elif board[newLevel][newIndex]==1 or board[newLevel][newIndex]==4 :    
+    elif board[newLevel][newIndex]==1 or board[newLevel][newIndex]==2 :    
          newLevel=newLevel
          newIndex=newIndex+2 #get the Right of Right
-         if board[newLevel][newIndex]==0:
+         if newLevel>16 or newIndex>24:
+            skip
+         elif board[newLevel][newIndex]==0:
               arrOfMoves.append([newLevel,newIndex])
               newArrOfMoves=getJumpMoves(board,newLevel,newIndex-2,newLevel,newIndex)
               arrOfMoves.extend(newArrOfMoves)
@@ -310,13 +318,16 @@ def getAvailableMoves(board,level,index):
     #DownRight
     newLevel=level+1
     newIndex=index+1
-
-    if board[newLevel][newIndex]==0:
+    if newLevel>16 or newIndex>24:
+        skip
+    elif board[newLevel][newIndex]==0:
         arrOfMoves.append([newLevel,newIndex])
-    elif board[newLevel][newIndex]==1 or board[newLevel][newIndex]==4 : 
+    elif board[newLevel][newIndex]==1 or board[newLevel][newIndex]==2 : 
          newLevel=newLevel+1
          newIndex=newIndex+1 #get the DownRight of DownRight
-         if board[newLevel][newIndex]==0:
+         if newLevel>16 or newIndex>24:
+            skip
+         elif board[newLevel][newIndex]==0:
               arrOfMoves.append([newLevel,newIndex])
               newArrOfMoves=getJumpMoves(board,newLevel-1,newIndex-1,newLevel,newIndex)
               arrOfMoves.extend(newArrOfMoves)
@@ -331,12 +342,16 @@ def getAvailableMoves(board,level,index):
     #TopLeft
     newLevel=level-1
     newIndex=index-1
-    if board[newLevel][newIndex]==0:
+    if newLevel>16 or newIndex>24:
+        skip
+    elif board[newLevel][newIndex]==0:
         arrOfMoves.append([newLevel,newIndex])
-    elif board[newLevel][newIndex]==1 or board[newLevel][newIndex]==4 : 
+    elif board[newLevel][newIndex]==1 or board[newLevel][newIndex]==2 : 
          newLevel=newLevel-1
          newIndex=newIndex-1 #get the TopLeft of TopLeft
-         if board[newLevel][newIndex]==0:
+         if newLevel>16 or newIndex>24:
+            skip
+         elif board[newLevel][newIndex]==0:
               arrOfMoves.append([newLevel,newIndex])
               newArrOfMoves=getJumpMoves(board,newLevel+1,newIndex+1,newLevel,newIndex)
               arrOfMoves.extend(newArrOfMoves)
@@ -347,12 +362,16 @@ def getAvailableMoves(board,level,index):
     #Left
     newLevel=level
     newIndex=index-2
-    if board[newLevel][newIndex]==0:
+    if newLevel>16 or newIndex>24:
+        skip
+    elif board[newLevel][newIndex]==0:
         arrOfMoves.append([newLevel,newIndex])
-    elif board[newLevel][newIndex]==1 or board[newLevel][newIndex]==4 : 
+    elif board[newLevel][newIndex]==1 or board[newLevel][newIndex]==2 : 
          newLevel=newLevel
          newIndex=newIndex-2 #get the Left of Left
-         if board[newLevel][newIndex]==0:
+         if newLevel>16 or newIndex>24:
+            skip
+         elif board[newLevel][newIndex]==0:
               arrOfMoves.append([newLevel,newIndex])
               newArrOfMoves=getJumpMoves(board,newLevel,newIndex+2,newLevel,newIndex)
               arrOfMoves.extend(newArrOfMoves)
@@ -364,12 +383,16 @@ def getAvailableMoves(board,level,index):
     #DownLeft
     newLevel=level+1
     newIndex=index-1
-    if board[newLevel][newIndex]==0:
+    if newLevel>16 or newIndex>24:
+        skip
+    elif board[newLevel][newIndex]==0:
         arrOfMoves.append([newLevel,newIndex])
-    elif board[newLevel][newIndex]==1 or board[newLevel][newIndex]==4 : 
+    elif board[newLevel][newIndex]==1 or board[newLevel][newIndex]==2 : 
            newLevel=newLevel+1
            newIndex=newIndex-1 #get the DownLeft of DownLeft
-           if board[newLevel][newIndex]==0:
+           if newLevel>16 or newIndex>24:
+             skip
+           elif board[newLevel][newIndex]==0:
               arrOfMoves.append([newLevel,newIndex])
               newArrOfMoves=getJumpMoves(board,newLevel-1,newIndex+1,newLevel,newIndex)
               arrOfMoves.extend(newArrOfMoves) 
