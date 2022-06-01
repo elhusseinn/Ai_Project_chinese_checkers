@@ -1,8 +1,7 @@
 from GameManager import board as BD
+from PC_Move_Controller import controller as controller
  
 board=BD.init_board()
-#while(True):
-     #while(True):
-    
-arr=BD.getAvailableMoves(board,14,14)
-print(arr)
+
+
+print(controller.generateSearchSpace(board))

@@ -1,0 +1,10 @@
+// computer moves
+for every marble do the following:
+  1. generate every possible state if i chose to play this marble
+    1.1 for all state generate all the possible states (do iterations based on the difficulty of the game)
+  2. push all states into a list(maybe 2d list with level and state in it)(push infront)
+  3. do hueristic function that calculate how far the state from goal 
+  4. from the bottom of the list (mentioned in number 2) (acess states from bottom level), calculate 
+     hueristic value for each state at the bottom.
+  5. according to the level above you choose the highest or lowest value state
+  6. keep choosing states until you reach the very top, go down a level and traceback which move should be played

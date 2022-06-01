@@ -5,6 +5,7 @@
 from unittest import skip
 import numpy
 
+difficulty = 'easy'
 
 def init_board():
     board = numpy.full((17, 25), -1)
@@ -16,7 +17,7 @@ def init_board():
     board[2][10] = 1
     board[2][12] = 1
     board[2][14] = 1
-    board[3][9] = 1
+    board[3][9]  = 1
     board[3][11] = 1
     board[3][13] = 1
     board[3][15] = 1
@@ -37,7 +38,7 @@ def init_board():
 
 # playground3
 
-    board[9][21] = 0
+    board[9][21]  = 0
     board[10][20] = 0
     board[10][22] = 0
     board[11][19] = 0
@@ -51,7 +52,7 @@ def init_board():
 
 # Red is 2 To PC
 
-    board[13][9] = 2
+    board[13][9]  = 2
     board[13][11] = 2
     board[13][13] = 2
     board[13][15] = 2
@@ -63,7 +64,7 @@ def init_board():
     board[16][12] = 2
 
 # playground5
-    board[9][3] = 0
+    board[9][3]  = 0
     board[10][2] = 0
     board[10][4] = 0
     board[11][1] = 0
@@ -93,39 +94,39 @@ def init_board():
 
 
 # level 4
-    board[4][8] = 0
+    board[4][8]  = 0
     board[4][10] = 0
     board[4][12] = 0
     board[4][14] = 0
     board[4][16] = 0
 # level 5
-    board[5][7] = 0
-    board[5][9] = 0
+    board[5][7]  = 0
+    board[5][9]  = 0
     board[5][11] = 0
     board[5][13] = 0
     board[5][15] = 0
     board[5][17] = 0
 # level 6
-    board[6][6] = 0
-    board[6][8] = 0
+    board[6][6]  = 0
+    board[6][8]  = 0
     board[6][10] = 0
     board[6][12] = 0
     board[6][14] = 0
     board[6][16] = 0
     board[6][18] = 0
 # level 7
-    board[7][5] = 0
-    board[7][7] = 0
-    board[7][9] = 0
+    board[7][5]  = 0
+    board[7][7]  = 0
+    board[7][9]  = 0
     board[7][11] = 0
     board[7][13] = 0
     board[7][15] = 0
     board[7][17] = 0
     board[7][19] = 0
 # level 8
-    board[8][4] = 0
-    board[8][6] = 0
-    board[8][8] = 0
+    board[8][4]  = 0
+    board[8][6]  = 0
+    board[8][8]  = 0
     board[8][10] = 0
     board[8][12] = 0
     board[8][14] = 0
@@ -133,17 +134,17 @@ def init_board():
     board[8][18] = 0
     board[8][20] = 0
 # level 9
-    board[9][5] = 0
-    board[9][7] = 0
-    board[9][9] = 0
+    board[9][5]  = 0
+    board[9][7]  = 0
+    board[9][9]  = 0
     board[9][11] = 0
     board[9][13] = 0
     board[9][15] = 0
     board[9][17] = 0
     board[9][19] = 0
 # level 10
-    board[10][6] = 0
-    board[10][8] = 0
+    board[10][6]  = 0
+    board[10][8]  = 0
     board[10][10] = 0
     board[10][12] = 0
     board[10][14] = 0
@@ -151,15 +152,15 @@ def init_board():
     board[10][18] = 0
 # level 11
 
-    board[11][7] = 0
-    board[11][9] = 0
+    board[11][7]  = 0
+    board[11][9]  = 0
     board[11][11] = 0
     board[11][13] = 0
     board[11][15] = 0
     board[11][17] = 0
 
 # level 12
-    board[12][8] = 0
+    board[12][8]  = 0
     board[12][10] = 0
     board[12][12] = 0
     board[12][14] = 0
@@ -458,6 +459,7 @@ def getHumanMovesInsideGoal(arrOfMoves):
                  newArrOfMoves.append(arrOfMoves[i])
   
     return newArrOfMoves 
+
 def getComputerMovesInsideGoal(arrOfMoves):    
     newArrOfMoves=[]
     for i in range(len(arrOfMoves)):
