@@ -4,5 +4,5 @@ board=BD.init_board()
 #while(True):
      #while(True):
     
-arr=BD.getAvailableMoves(board,11,23)
+arr=BD.getAvailableMoves(board,14,14)
 print(arr)

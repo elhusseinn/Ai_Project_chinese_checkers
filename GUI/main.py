@@ -57,14 +57,7 @@ while running:
             if event.key == pygame.K_RIGHT or event.key == pygame.K_LEFT:
                 playerX_change = 0
     # RGB = Red , Green , Blue
-    playerX += playerX_change
-
-    if playerX <= 0:
-        playerX = 0
-    elif playerX > 736:
-        playerX = 736
-
-
+    
     move(285, 655, "blue")
     move(285, 655, "blue")
     # move(309, 615, "blue")
