@@ -1,11 +1,11 @@
 from GameManager import board as BD
 
 # function that take the board and returns all the indexes taken by PC
-def get_PC_board_positions(board):
+def get_PC_board_positions(board, x):
     currentPosition = []
     for i in range (17):
         for j in range (25):
-            if board[i][j] == 2:
+            if board[i][j] == x:
                 currentPosition.append([i,j])
     return currentPosition
 
