@@ -1,7 +1,7 @@
 from GameManager import board as BD
 
 # function that take the board and returns all the indexes taken by PC
-def get_PC_board_positions(board, x):
+def get_board_positions(board, x):
     currentPosition = []
     for i in range (17):
         for j in range (25):
