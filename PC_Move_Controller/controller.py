@@ -20,7 +20,7 @@ def get_board_positions(board, x):
 
 def generateSearchSpace(board): # make another function that takes all those possible moves and generate states from it 
     moves = [] #
-    positions = get_PC_board_positions(board) # gets all the positions of all my marbles in the board
+    positions = get_board_positions(board) # gets all the positions of all my marbles in the board
     for position in positions:
         level = position[0]
         index = position[1]
