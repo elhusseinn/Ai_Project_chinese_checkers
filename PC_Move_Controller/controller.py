@@ -14,22 +14,17 @@ def get_board_positions(board, x):
 
 
 
-# function that loops through every position (the PC holds on the board) and generate every state to each (GENERATE SEARCH SPACE)
-    # according to the difficulty generate another levels or not
-
-#draft function:
-#goal : generate all possible states from a given state 
-def generateStates(board): # make another function that takes all those possible moves and generate states from it
+def generateStates(board,x): # takes a state and a player type(1 for player, 2 for Ai) and return all the possible states
     tempBoard = board.copy()
     states = [] 
-    positions = get_board_positions(board,2) # gets all the positions of all my marbles in the board
+    positions = get_board_positions(board,x) # gets all the positions of all my marbles in the board
     for position in positions:
         level = position[0]
         index = position[1]
         availableMoves = BD.getAvailableMoves(board,level,index)
         for move in availableMoves:
             tempBoard[level][index]  = 0          # removes the marble from the current position
-            tempBoard[move[0]][move[1]] = 2
+            tempBoard[move[0]][move[1]] = x       # put the marble in the next position which generates the state
             states.append(tempBoard)
             tempBoard = board.copy()
 
@@ -52,4 +47,17 @@ def calculate_heuristic(board):
     return heurestic_AI - heurestic_Player
 
 
-# function that applies minimax , uses heuristic and generateSearchSpace functions
+# function that applies minimax , uses heuristic and generateStates functions
+
+def miniMax(board, depth, maximizingAgent): # takes board(cuurent state) , return the best move i can make in terms of [marble-> to position]
+    '''
+    alogorithm: (using recurssion)
+
+    '''
+    if depth == 0:
+        return calculate_heuristic(board)
+        # states = generateStates(board,2)
+        # for state in states:
+        #     if calculate_heuristic(state) > 0:
+    else:
+        miniMax(board, depth-1 ,1)            

@@ -4,7 +4,7 @@ from PC_Move_Controller import controller as controller
 
 board=BD.init_board()
 newBoard = board.copy()
-states = controller.generateStates(board)
+states = controller.generateStates(board, 2)
 
 for state in states:
     BD.printBoard(state)
