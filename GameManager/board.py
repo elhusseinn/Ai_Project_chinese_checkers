@@ -7,6 +7,19 @@ import numpy
 
 difficulty = 'easy'
 
+def printBoard(board):
+     for i in range(len(board)):
+         print("\n")
+         for j in range(len(board[i])):
+            if(bool(board[i][j]==-1)):
+                print(" ", end = ' ')
+            elif(board[i][j]==0):
+                print ("0", end = ' ')
+            elif(board[i][j]==1):
+                print("1", end = ' ') 
+            elif(board[i][j]==2):
+                print("2", end = ' ')
+
 def init_board():
     board = numpy.full((17, 25), -1)
 
