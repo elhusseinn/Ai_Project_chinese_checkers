@@ -8,7 +8,6 @@ states = controller.generateStates(board, 2)
 
 for state in states:
     BD.printBoard(state)
-    print ("/n")
 
 
 
