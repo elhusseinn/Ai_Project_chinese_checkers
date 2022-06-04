@@ -180,4 +180,4 @@ def getBestMove(board, depth):
                     bestMove[0] = position
                     bestMove[1] = move
                 tempBoard = board.copy()
-    return move
+    return bestMove
