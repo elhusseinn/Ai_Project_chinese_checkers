@@ -15,8 +15,10 @@ board=BD.init_board()
 # board[5][11] = 1
 
 # BD.printBoard(board)
+for i in range (15):
+    BD.printBoard(controller.PC_Move(board, 3))
 
-print(controller.getBestMove(board, 2))
+# print(controller.eclidiean_distance([3,9],[16,12]))
 
 
 
