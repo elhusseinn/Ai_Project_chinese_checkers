@@ -1,3 +1,4 @@
+from turtle import position
 from GameManager import board as BD
 from numpy import *
 import math
@@ -43,7 +44,7 @@ def generateStates(board,x): # takes a state and a player type(1 for player, 2 f
     tempBoard = board.copy()
     states = [] 
     positions = get_board_positions(board,x) # gets all the positions of all my marbles in the board
-    for position in positions: # each marble i own in the playing ground
+    for position in positions:
         level = position[0]
         index = position[1]
         availableMoves = BD.getAvailableMoves(board,level,index)
@@ -55,7 +56,8 @@ def generateStates(board,x): # takes a state and a player type(1 for player, 2 f
 
     return states
 
-def getBestState(states):
+'''def getBestState(states):
+
     bestMove=[]
     for state in states:
             heuristic = calculate_heuristic(state)
@@ -121,4 +123,61 @@ def minValue(state,depth):
         if(heur>h1):
             heur=h1
             minState = state1
-    return heur,minState
+    return heur,minState'''
+
+def miniMax(board, depth, maximizingAgent): # takes board(cuurent state) , return the best move i can make in terms of [marble-> to position]
+    result = BD.checkWin(board)
+    if(depth == 0 or result != -1):
+        return calculate_heuristic(board)
+    if(maximizingAgent == 2):
+        finalScore = -math.inf
+        # recursively get the states
+        tempBoard = board.copy()
+        positions = get_board_positions(board,maximizingAgent)
+        for position in positions:
+            level = position[0]
+            index = position[1]
+            availableMoves = BD.getAvailableMoves(board,level,index)
+            for move in availableMoves:
+                tempBoard[level][index]  = 0  # removes the marble from the current position
+                tempBoard[move[0]][move[1]] = maximizingAgent   # put the marble in the next position which generates the state
+                score = miniMax(tempBoard, depth-1, 1)
+                tempBoard = board.copy()
+                finalScore = max(finalScore, score)
+        return finalScore
+    else:
+        finalScore = math.inf
+        # here we recursively get the states
+        tempBoard = board.copy()
+        positions = get_board_positions(board,maximizingAgent)
+        for position in positions:
+            level = position[0]
+            index = position[1]
+            availableMoves = BD.getAvailableMoves(board,level,index)
+            for move in availableMoves:
+                tempBoard[level][index]  = 0          # removes the marble from the current position
+                tempBoard[move[0]][move[1]] = maximizingAgent       # put the marble in the next position which generates the state
+                score = miniMax(tempBoard, depth-1, 2)
+                tempBoard = board.copy()
+                finalScore = min(finalScore, score)
+        return finalScore
+
+def getBestMove(board, depth):
+    bestMove = []
+    bestScore = -math.inf
+    tempBoard = board.copy()
+    positions = get_board_positions(board,2)
+    for position in positions:
+            level = position[0]
+            index = position[1]
+            availableMoves = BD.getAvailableMoves(board,level,index)
+            for move in availableMoves:
+                tempBoard[level][index]  = 0          # removes the marble from the current position
+                tempBoard[move[0]][move[1]] = 2       # put the marble in the next position which generates the state
+                score = miniMax(tempBoard,depth-1, 1)
+                if(score > bestScore):
+                    bestScore = score
+                    bestMove[0] = position
+                    bestMove[1] = move
+                tempBoard = board.copy()
+    return move
