@@ -3,13 +3,6 @@ from asyncio import sleep
 from GameManager import board as BD
 import sys
 
-sys.setrecursionlimit(8000)
-
-# for i in range(15):
-#   BD.printBoard(controller.PC_Move(board, 2))
-#  print(controller.calculate_heuristic(board))
-
-
 board = BD.init_board()
 
 

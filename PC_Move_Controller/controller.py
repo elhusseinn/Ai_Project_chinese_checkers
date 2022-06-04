@@ -13,18 +13,28 @@ def get_board_positions(board, x):
     return currentPosition
 
 # function for hueristic calculation (takes a state and return a value)
-def get_deepest_empty_goal(board, player):
-    # deepestLevel = None
-    # deepestIndex = None
-    # if player == 1: # goal starts at [16][12]
-    #     for level in range(0, 4):
-    #         for index in range(9, 16):
-    #             # if board[level][index] = 0 :
-                    
-                
-    # elif player == 2: # goal starts at [0][12]
-    #     return 0
-    return 1
+def get_deepest_empty_goal(board, player, threshold):
+    # goal is to return  a tuple to the deepest place that doesn't contain my color with some threshold
+    # i don't look below i look only up
+    finalLevel = None
+    finalIndex = None
+    if player == 2:
+        for level in range(0,3):
+            if level < threshold:
+                for index in range(9,15):
+                    if board[level][index] in [0, 1]:
+                        finalLevel = level
+                        finalIndex = index
+                        return finalLevel, finalIndex
+    elif player == 1:
+        for level in range(13,16):
+            if level > threshold:
+                for index in range(9,15):
+                    if board[level][index] in [0, 2]:
+                        finalLevel = level
+                        finalIndex = index
+                        return finalLevel, finalIndex
+    return finalLevel, finalIndex
 
 def eclidiean_distance(start, end):
         num1 = pow(end[0] - start[0], 2)
@@ -37,9 +47,15 @@ def calculate_heuristic(board):
     heurestic_Player = 0
     heurestic_AI = 0
     for position in Ai_positions:
-        heurestic_AI += eclidiean_distance(position, [0,12])
+        lvl = get_deepest_empty_goal(board, 2, position[0])[0]
+        indx = get_deepest_empty_goal(board, 2, position[0])[1]
+        if (lvl is not None) and (indx is not None):
+            heurestic_AI += eclidiean_distance(position, [lvl,indx])
     for position in player_positions:
-        heurestic_Player += eclidiean_distance(position,[16,12])
+        lvl = get_deepest_empty_goal(board, 1, position[0])[0]
+        indx = get_deepest_empty_goal(board, 1, position[0])[1]
+        if (lvl is not None) and (indx is not None):
+            heurestic_Player += eclidiean_distance(position,[lvl,indx])
     return heurestic_Player - heurestic_AI  # +ve heur -> Ai is more far from goal hence Ai is losing and vice versa
 
 
@@ -52,7 +68,7 @@ def generateStates(board,x): # takes a state and a player type(1 for player, 2 f
         index = position[1]
         availableMoves = BD.getAvailableMoves(board,level,index)
         for move in availableMoves:
-            tempBoard[level][index]  = 0          # removes the marble from the current position
+            tempBoard[level][index] = 0          # removes the marble from the current position
             tempBoard[move[0]][move[1]] = x       # put the marble in the next position which generates the state
             states.append(tempBoard)
             tempBoard = board.copy()
@@ -130,8 +146,12 @@ def minValue(state,depth):
 
 def miniMax(board, depth, maximizingAgent): # takes board(cuurent state) , return the best move i can make in terms of [marble-> to position]
     result = BD.checkWin(board)
-    if(depth == 0 or result != -1):
+    if depth == 0:
         return calculate_heuristic(board)
+    elif result == 0:
+        return math.inf
+    elif result == 1:
+        return -math.inf
     if(maximizingAgent == 2):
         finalScore = -math.inf
         # recursively get the states

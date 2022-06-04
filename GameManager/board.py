@@ -185,286 +185,173 @@ def checkWin(board):
         return -1
 
 
-# Jump Moves Directions
 
-def getJumpTopRight(board,arrOfMoves ,backlevel, backindex, level, index):
-    arrOfMoves = []
-    newLevel = level-1
-    newIndex = index+1
-    if newLevel == backlevel and newIndex == backindex:
-        return arrOfMoves
-    elif board[newLevel][newIndex] == 1 or board[newLevel][newIndex] == 2:
-        newLevel = newLevel-1
-        newIndex = newIndex+1  # get the topRight of TopRight
-        if newLevel > 16 or newIndex > 24:
-            return arrOfMoves
-        elif board[newLevel][newIndex] == 0 and  [newLevel,newIndex]not in arrOfMoves:
-            arrOfMoves.append([newLevel, newIndex])
-            newArrOfMoves = getJumpMoves(
-                board,[] ,newLevel+1, newIndex-1, newLevel, newIndex)
-            arrOfMoves.extend(newArrOfMoves)
-    return arrOfMoves
+       
+#topright=1
+#right=2
+#downright=3
+#topleft=4 
+#left=5
+#downleft=6
 
 
-def getJumpRight(board,arrOfMoves ,backlevel, backindex, level, index):
-    arrOfMoves = []
-    newLevel = level
-    newIndex = index+2
-    if newLevel == backlevel and newIndex == backindex:
-        return arrOfMoves
-    elif board[newLevel][newIndex] == 1 or board[newLevel][newIndex] == 2:
-        newLevel = newLevel
-        newIndex = newIndex+2  # get the Right of Right
-        if newLevel > 16 or newIndex > 24:
-            return arrOfMoves
-        elif board[newLevel][newIndex] == 0 and   [newLevel,newIndex]not in arrOfMoves:
-            arrOfMoves.append([newLevel, newIndex])
-            newArrOfMoves = getJumpMoves(
-                board, [] ,newLevel, newIndex-2, newLevel, newIndex)
-            arrOfMoves.extend(newArrOfMoves)
-    return arrOfMoves
 
-
-def getJumpDownRight(board,arrOfMoves ,backlevel, backindex, level, index):
-    arrOfMoves = []
-    newLevel = level+1
-    newIndex = index+1
-    if newLevel == backlevel and newIndex == backindex:
-        return arrOfMoves
-    elif newLevel > 16 or newIndex > 24:
-            return arrOfMoves
-    elif board[newLevel][newIndex] == 1 or board[newLevel][newIndex] == 2:
-        newLevel = newLevel+1
-        newIndex = newIndex+1  # get the DownRight of DownRight
-        if newLevel > 16 or newIndex > 24:
-            return arrOfMoves
-        elif board[newLevel][newIndex] == 0 and  [newLevel,newIndex]not in arrOfMoves:
-            arrOfMoves.append([newLevel, newIndex])
-            newArrOfMoves = getJumpMoves(
-                board, [] ,newLevel-1, newIndex-1, newLevel, newIndex)
-            arrOfMoves.extend(newArrOfMoves)
-
-    return arrOfMoves
-
-
-def getJumpTopLeft(board,arrOfMoves ,backlevel, backindex, level, index):
-    arrOfMoves = []
-    newLevel = level-1
-    newIndex = index-1
-    if newLevel == backlevel and newIndex == backindex:
-        return arrOfMoves
-    elif board[newLevel][newIndex] == 1 or board[newLevel][newIndex] == 2:
-        # get the TopLeft of TopLeft
-        newLevel=newLevel-1
-        newIndex = newIndex-1
-        if newLevel > 16 or newIndex > 24:
-            return arrOfMoves
-        elif board[newLevel][newIndex] == 0 and  [newLevel,newIndex]not in arrOfMoves:
-            arrOfMoves.append([newLevel, newIndex])
-            newArrOfMoves = getJumpMoves(
-                board, [] ,newLevel+1, newIndex+1, newLevel, newIndex)
-            arrOfMoves.extend(newArrOfMoves)
-    return arrOfMoves
-
-
-def getJumpLeft(board,arrOfMoves ,backlevel, backindex, level, index):
-    arrOfMoves = []
-    newLevel = level
-    newIndex = index-2
-    if newLevel == backlevel and newIndex == backindex:
-        return arrOfMoves
-    elif board[newLevel][newIndex] == 1 or board[newLevel][newIndex] == 2:
-        newLevel = newLevel
-        newIndex = newIndex-2  # get the Left of Left
-        if newLevel > 16 or newIndex > 24:
-            return arrOfMoves
-        elif board[newLevel][newIndex] == 0 and  [newLevel,newIndex]not in arrOfMoves:
-            arrOfMoves.append([newLevel, newIndex])
-            newArrOfMoves = getJumpMoves(
-                board, [] ,newLevel, newIndex+2, newLevel, newIndex)
-            arrOfMoves.extend(newArrOfMoves)
-    return arrOfMoves
-
-
-def getJumpDownLeft(board,arrOfMoves ,backlevel, backindex, level, index):
-    arrOfMoves = []
-    newLevel = level+1
-    newIndex = index-1
-    if newLevel == backlevel and newIndex == backindex:
-        return arrOfMoves
-    elif newLevel > 16 or newIndex > 24:
-            return arrOfMoves
-    elif board[newLevel][newIndex] == 1 or board[newLevel][newIndex] == 2:
-        newLevel = newLevel+1
-        newIndex = newIndex-1  # get the DownLeft of DownLeft
-        if newLevel > 16 or newIndex > 24:
-            return arrOfMoves
-        elif board[newLevel][newIndex] == 0 and  [newLevel,newIndex]not in arrOfMoves:
-            arrOfMoves.append([newLevel, newIndex])
-            newArrOfMoves = getJumpMoves(
-                board,[] ,newLevel-1, newIndex+1, newLevel, newIndex)
-            arrOfMoves.extend(newArrOfMoves)
-    return arrOfMoves
-
-
-def getJumpMoves(board, arrOfMoves,backlevel, backindex, level, index):
-    arrOfMoves = []
-
+def getJumpMoves(board, murblesIndexs,level, index):
+  usedMurbles=[[level,index]]
+  arrOfMoves=[]
+  i=0
+  while(i==0 and len(murblesIndexs)!=0):  
+   level=murblesIndexs[0][0]
+   index=murblesIndexs[0][1]
+   direct=murblesIndexs[0][2]
+   if not ( [level,index] in usedMurbles): 
+    usedMurbles.append([level,index])  
     # TopRight
-    newArrOfMoves = getJumpTopRight(board,[],backlevel, backindex, level, index)
-    arrOfMoves.extend(newArrOfMoves)
-
+    if  index < 24 and direct==1:
+     if(board[level-1][index+1]==0): 
+         arrOfMoves.append([level-1,index+1])
+         murblesIndexs.extend(getMurblesAround(board,level-1,index+1))
     # Right
-    newArrOfMoves = getJumpRight(board, [],backlevel, backindex, level, index)
-    arrOfMoves.extend(newArrOfMoves)
-
+    if  index < 23 and direct==2:
+     if(board[level][index+2]==0):    
+        arrOfMoves.append([level,index+2])
+        murblesIndexs.extend(getMurblesAround(board,level,index+2))
     # DownRight
-
-    newArrOfMoves = getJumpDownRight(board, [],backlevel, backindex, level, index)
-    arrOfMoves.extend(newArrOfMoves)
-
+    if  level < 16 and index<24 and  direct==3: 
+     if(board[level+1][index+1]==0):        
+       arrOfMoves.append([level+1,index+1])
+       murblesIndexs.extend(getMurblesAround(board,level+1,index+1))
+      
     # TopLeft
-    newArrOfMoves = getJumpTopLeft(board, [],backlevel, backindex, level, index)
-    arrOfMoves.extend(newArrOfMoves)
-
+    if( direct==4):
+     if(board[level-1][index-1]==0):    
+      arrOfMoves.append([level-1,index-1])
+      murblesIndexs.extend(getMurblesAround(board,level-1,index-1))
     # Left
-    newArrOfMoves = getJumpLeft(board,[] ,backlevel, backindex, level, index)
-    arrOfMoves.extend(newArrOfMoves)
-
+    if( direct==5):
+     if(board[level][index-2]==0):    
+      arrOfMoves.append([level,index-2])
+      murblesIndexs.extend(getMurblesAround(board,level,index-2))
     # DownLeft
-    newArrOfMoves = getJumpDownLeft(board,[] ,backlevel, backindex, level, index)
-    arrOfMoves.extend(newArrOfMoves)
-
-    return arrOfMoves
-
+    if(level<16 and direct==6):
+     if(board[level+1][index-1]==0):    
+        arrOfMoves.append([level+1,index-1])
+        murblesIndexs.extend(getMurblesAround(board,level+1,index-1))
+    
+    
+    
+    if len(murblesIndexs)==1:
+        i=-1
+    murblesIndexs.remove(murblesIndexs[0])
+   else:
+        if len(murblesIndexs)==1:
+            i=-1
+        murblesIndexs.remove(murblesIndexs[0]) 
+  return arrOfMoves
+ 
+  
+def getMurblesAround(board,level,index):
+#topright=1
+#right=2
+#downright=3
+#topleft=4 
+#left=5
+#downleft=6
+    murblesIndexs=[]
+     # TopRight
+    if  index < 24:
+         if(board[level-1][index+1]>0):
+           murblesIndexs.append([level-1,index+1,1])
+    # Right
+    if  index < 23:
+     if(board[level][index+2]>0):
+        murblesIndexs.append([level,index+2,2])
+    # DownRight
+    if  level < 16 and index<24: 
+     if(board[level+1][index+1]>0):
+       murblesIndexs.append([level+1,index+1,3])   
+    # TopLeft
+    if(board[level-1][index-1]>0):
+      murblesIndexs.append([level-1,index-1,4])
+    # Left
+    if(board[level][index-2]>0):
+      murblesIndexs.append([level,index-2,5])
+    # DownLeft
+    if(level<16):
+     if(board[level+1][index-1]>0):
+        murblesIndexs.append([level+1,index-1,6])
+   
+    return murblesIndexs      
 
 # Moves Directions
-def getTopRight(board,arrOfMoves, level, index):
+def getTopRight(board, level, index):
     # TopRight
     arrOfMoves = []
     newLevel = level-1
     newIndex = index+1
     if newLevel > 16 or newIndex > 24:
         return arrOfMoves
-    elif board[newLevel][newIndex] == 0 and  [newLevel,newIndex]not in arrOfMoves:
+    elif board[newLevel][newIndex] == 0 :
         arrOfMoves.append([newLevel, newIndex])
-    # check top right if have value
-    elif board[newLevel][newIndex] == 1 or board[newLevel][newIndex] == 2:
-        newLevel = newLevel-1
-        newIndex = newIndex+1  # get the topRight of TopRight
-        if newLevel > 16 or newIndex > 24:
-            return arrOfMoves
-        elif board[newLevel][newIndex] == 0 and [newLevel,newIndex]not in arrOfMoves:
-            arrOfMoves.append([newLevel, newIndex])
-            newArrOfMoves = getJumpMoves(
-                board,[] ,newLevel+1, newIndex-1, level, index)
-            arrOfMoves.extend(newArrOfMoves)
 
     return arrOfMoves
 
 
-def getRight(board,arrOfMoves,level, index):
+def getRight(board,level, index):
     arrOfMoves = []
     newLevel = level
     newIndex = index+2
     if newLevel > 16 or newIndex > 24:
         return arrOfMoves
-    elif board[newLevel][newIndex] == 0 and [newLevel,newIndex]not in arrOfMoves:
+    elif board[newLevel][newIndex] == 0 :
         arrOfMoves.append([newLevel, newIndex])
-    elif board[newLevel][newIndex] == 1 or board[newLevel][newIndex] == 2:
-        newLevel = newLevel
-        newIndex = newIndex+2  # get the Right of Right
-        if newLevel > 16 or newIndex > 24:
-            return arrOfMoves
-        elif board[newLevel][newIndex] == 0 and [newLevel,newIndex]not in arrOfMoves:
-            arrOfMoves.append([newLevel, newIndex])
-            newArrOfMoves = getJumpMoves(
-                board,[] ,newLevel, newIndex-2, level, index)
-            arrOfMoves.extend(newArrOfMoves)
     return arrOfMoves
-def getDownRight(board,arrOfMoves, level, index):
+def getDownRight(board, level, index):
     arrOfMoves = []
     newLevel = level+1
     newIndex = index+1
     if newLevel > 16 or newIndex > 24:
         return arrOfMoves
-    elif board[newLevel][newIndex] == 0 and [newLevel,newIndex]not in arrOfMoves:
+    elif board[newLevel][newIndex] == 0 :
         arrOfMoves.append([newLevel, newIndex])
-    elif board[newLevel][newIndex] == 1 or board[newLevel][newIndex] == 2:
-        newLevel = newLevel+1
-        newIndex = newIndex+1  # get the DownRight of DownRight
-        if newLevel > 16 or newIndex > 24:
-            return arrOfMoves
-        elif board[newLevel][newIndex] == 0 and [newLevel,newIndex]not in arrOfMoves:
-            arrOfMoves.append([newLevel, newIndex])
-            newArrOfMoves = getJumpMoves(
-                board,[] ,newLevel-1, newIndex-1, level, index)
-            arrOfMoves.extend(newArrOfMoves)
 
     return arrOfMoves
 
 
-def getTopLeft(board,arrOfMoves ,level, index):
+def getTopLeft(board ,level, index):
     arrOfMoves = []
     newLevel = level-1
     newIndex = index-1
     if newLevel > 16 or newIndex > 24:
         return arrOfMoves
-    elif board[newLevel][newIndex] == 0 and [newLevel,newIndex]not in arrOfMoves:
+    elif board[newLevel][newIndex] == 0 :
         arrOfMoves.append([newLevel, newIndex])
-    elif board[newLevel][newIndex] == 1 or board[newLevel][newIndex] == 2:
-        newLevel = newLevel-1
-        newIndex = newIndex-1  # get the TopLeft of TopLeft
-        if newLevel > 16 or newIndex > 24:
-            return arrOfMoves
-        elif board[newLevel][newIndex] == 0 and [newLevel,newIndex]not in arrOfMoves:
-            arrOfMoves.append([newLevel, newIndex])
-            newArrOfMoves = getJumpMoves(
-                board,[] ,newLevel+1, newIndex+1, level, index)
-            arrOfMoves.extend(newArrOfMoves)
+    
 
     return arrOfMoves
 
 
-def getLeft(board,arrOfMoves, level, index):
+def getLeft(board, level, index):
     arrOfMoves = []
     newLevel = level
     newIndex = index-2
     if newLevel > 16 or newIndex > 24:
         return arrOfMoves
-    elif board[newLevel][newIndex] == 0 and [newLevel,newIndex]not in arrOfMoves:
+    elif board[newLevel][newIndex] == 0 :
         arrOfMoves.append([newLevel, newIndex])
-    elif board[newLevel][newIndex] == 1 or board[newLevel][newIndex] == 2:
-        newLevel = newLevel
-        newIndex = newIndex-2  # get the Left of Left
-        if newLevel > 16 or newIndex > 24:
-            return arrOfMoves
-        elif board[newLevel][newIndex] == 0 and [newLevel,newIndex]not in arrOfMoves:
-            arrOfMoves.append([newLevel, newIndex])
-            newArrOfMoves = getJumpMoves(
-                board,[] ,newLevel, newIndex+2, level, index)
-            arrOfMoves.extend(newArrOfMoves)
+   
     return arrOfMoves
 
 
-def getDownLeft(board,arrOfMoves, level, index):
+def getDownLeft(board, level, index):
     arrOfMoves = []
     newLevel = level+1
     newIndex = index-1
     if newLevel > 16 or newIndex > 24:
         return arrOfMoves
-    elif board[newLevel][newIndex] == 0 and [newLevel,newIndex]not in arrOfMoves:
+    elif board[newLevel][newIndex] == 0 :
         arrOfMoves.append([newLevel, newIndex])
-    elif board[newLevel][newIndex] == 1 or board[newLevel][newIndex] == 2:
-        newLevel = newLevel+1
-        newIndex = newIndex-1  # get the DownLeft of DownLeft
-        if newLevel > 16 or newIndex > 24:
-            return arrOfMoves
-        elif board[newLevel][newIndex] == 0 and [newLevel,newIndex]not in arrOfMoves:
-            arrOfMoves.append([newLevel, newIndex])
-            newArrOfMoves = getJumpMoves(
-                board,[] ,newLevel-1, newIndex+1, level, index)
-            arrOfMoves.extend(newArrOfMoves)
+
     return arrOfMoves
 
 
@@ -488,35 +375,39 @@ def getComputerMovesInsideGoal(arrOfMoves):
 
 def getAvailableMoves(board, level, index):
     arrOfMoves = []
-   
+    murblesIndexs=[]
     # TopRight
-    newArrOfMoves = getTopRight(board, [],level, index)
+    newArrOfMoves = getTopRight(board,level, index)
     arrOfMoves.extend(newArrOfMoves)
 
     # Right
 
-    newArrOfMoves = getRight(board,[] ,level, index)
+    newArrOfMoves = getRight(board,level, index)
     arrOfMoves.extend(newArrOfMoves)
 
     # DownRight
 
-    newArrOfMoves = getDownRight(board,[] ,level, index)
+    newArrOfMoves = getDownRight(board,level, index)
     arrOfMoves.extend(newArrOfMoves)
 
     # TopLeft
 
-    newArrOfMoves = getTopLeft(board, [],level, index)
+    newArrOfMoves = getTopLeft(board,level, index)
     arrOfMoves.extend(newArrOfMoves)
 
     # Left
 
-    newArrOfMoves = getLeft(board, [],level, index)
+    newArrOfMoves = getLeft(board,level, index)
     arrOfMoves.extend(newArrOfMoves)
 
     # DownLeft
-    newArrOfMoves = getDownLeft(board,[],level, index)
+    newArrOfMoves = getDownLeft(board,level, index)
     arrOfMoves.extend(newArrOfMoves)
+  
+    murblesIndexs=getMurblesAround(board,level,index)
 
+
+    arrOfMoves.extend(getJumpMoves(board,murblesIndexs,level,index))
     if board[level][index] == 1 and level >= 13:
         arrOfMoves = getHumanMovesInsideGoal(arrOfMoves)
     elif board[level][index] == 2 and level <= 3:
@@ -526,6 +417,7 @@ def getAvailableMoves(board, level, index):
 
 
 def printBoard(board):
+
     print("   ", end=' ')
     for i in range(0, 25, 1):
         if(i < 10):
@@ -540,7 +432,7 @@ def printBoard(board):
             if(bool(board[i][j] == -1)):
                 print(" ", end='   ')
             elif(board[i][j] == 0):
-                print("0", end='   ')
+                print("*", end='   ')
             elif(board[i][j] == 1):
                 print("G", end='   ')
             elif(board[i][j] == 2):
