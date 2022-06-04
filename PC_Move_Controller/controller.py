@@ -163,7 +163,8 @@ def miniMax(board, depth, maximizingAgent): # takes board(cuurent state) , retur
         return finalScore
 
 def getBestMove(board, depth):
-    bestMove = []
+    bestPosition = None
+    bestMove = None
     bestScore = -math.inf
     tempBoard = board.copy()
     positions = get_board_positions(board,2)
@@ -177,7 +178,20 @@ def getBestMove(board, depth):
                 score = miniMax(tempBoard,depth-1, 1)
                 if(score > bestScore):
                     bestScore = score
-                    bestMove[0] = position
-                    bestMove[1] = move
+                    bestPosition = position
+                    bestMove = move
                 tempBoard = board.copy()
-    return bestMove
+    return bestPosition,bestMove
+
+
+def PC_Move(board, depth):
+    move = getBestMove(board, depth)
+    source = move[0]
+    destination = move[1]
+
+    board[source[0]][source[1]] = 0
+    board[destination[0]][destination[1]] = 2
+
+    return board
+
+

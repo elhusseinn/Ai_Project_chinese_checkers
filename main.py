@@ -15,9 +15,9 @@ board=BD.init_board()
 # board[5][11] = 1
 
 # BD.printBoard(board)
-for i in range(20):
-    board = controller.miniMax(board, 2, 2)
-    BD.printBoard(board) 
+
+print(controller.getBestMove(board, 2))
+
 
 
 
