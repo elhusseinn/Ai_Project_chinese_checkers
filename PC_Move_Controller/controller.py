@@ -29,7 +29,7 @@ def get_deepest_empty_goal(board, player):
 def eclidiean_distance(start, end):
         num1 = pow(end[0] - start[0], 2)
         num2 = pow(end[1] - start[1], 2)
-        return num1 + num2
+        return sqrt(num1 + num2)
 
 def calculate_heuristic(board):
     Ai_positions = get_board_positions(board, 2)
@@ -40,7 +40,7 @@ def calculate_heuristic(board):
         heurestic_AI += eclidiean_distance(position, [0,12])
     for position in player_positions:
         heurestic_Player += eclidiean_distance(position,[16,12])
-    return heurestic_Player - heurestic_AI   # +ve heur -> Ai is more far from goal hence Ai is losing and vice versa
+    return heurestic_AI - heurestic_Player  # +ve heur -> Ai is more far from goal hence Ai is losing and vice versa
 
 
 def generateStates(board,x): # takes a state and a player type(1 for player, 2 for Ai) and return all the possible states
