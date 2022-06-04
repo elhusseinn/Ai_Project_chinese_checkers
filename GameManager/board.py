@@ -254,7 +254,8 @@ def getJumpTopLeft(board, backlevel, backindex, level, index):
     if newLevel == backlevel and newIndex == backindex:
         return arrOfMoves
     elif board[newLevel][newIndex] == 1 or board[newLevel][newIndex] == 2:
-        # get the TopLeft of TopLeftewLevel=newLevel-1
+        # get the TopLeft of TopLeft
+        newLevel= newLevel-1
         newIndex = newIndex-1
         if newLevel > 16 or newIndex > 24:
             return arrOfMoves
@@ -469,6 +470,7 @@ def getDownLeft(board, level, index):
     return arrOfMoves
 
 
+
 def getHumanMovesInsideGoal(arrOfMoves):
     newArrOfMoves = []
     for i in range(len(arrOfMoves)):
@@ -486,9 +488,53 @@ def getComputerMovesInsideGoal(arrOfMoves):
 
     return newArrOfMoves
 
+    
 
 def getAvailableMoves(board, level, index):
     arrOfMoves = []
+    '''
+    algorithm:
+        1. check if the place hold a marble
+        2. check surrounding places, add them to the array if empty
+            2.1 check if they are in the coordinate system domain
+        3. check surrounding if they have any marbles in it call another function that handles the situation
+    
+    # if (board[level][index] != 0):
+    #     if(0<level<16 and 0<index<24): # checks if they place inside the domain
+    #         # check all surrounding places
+    #         if(board[level-1][index+1] == 0): # bottom right
+    #             arrOfMoves.append([level-1, index+1])
+    #         if(board[level-1][index-1] == 0): # bottom left
+    #             arrOfMoves.append([level-1, index+1])
+    #         if(board[level][index+2] == 0): # right
+    #             arrOfMoves.append([level-1, index+1])
+    #         if(board[level][index-2] == 0): # left 
+    #             arrOfMoves.append([level-1, index+1])
+    #         if(board[level+1][index+1] == 0): # top right
+    #             arrOfMoves.append([level-1, index+1])
+    #         if(board[level+1][index-1] == 0): # top left
+    #             arrOfMoves.append([level-1, index+1])
+                
+    #         if(board[level-1][index+1] not in [0, -1]): # bottom right
+    #             arrOfMoves.append([level-1, index+1])
+    #         if(board[level-1][index-1] not in [0, -1]): # bottom left
+    #             arrOfMoves.append([level-1, index+1])
+    #         if(board[level][index+2] not in [0, -1]): # right
+    #             arrOfMoves.append([level-1, index+1])
+    #         if(board[level][index-2] not in [0, -1]): # left 
+    #             arrOfMoves.append([level-1, index+1])
+    #         if(board[level+1][index+1] not in [0, -1]): # top right
+    #             arrOfMoves.append([level-1, index+1])
+    #         if(board[level+1][index-1] not in [0, -1]): # top left
+    #             arrOfMoves.append([level-1, index+1])
+                
+            
+            
+            
+            
+    # else:
+    #     return -1
+    '''
 
     # TopRight
     newArrOfMoves = getTopRight(board, level, index)
@@ -523,7 +569,9 @@ def getAvailableMoves(board, level, index):
     elif board[level][index] == 2 and level <= 3:
         arrOfMoves = getComputerMovesInsideGoal(arrOfMoves)
 
-    return arrOfMoves
+    
+
+
 
 
 def printBoard(board):
