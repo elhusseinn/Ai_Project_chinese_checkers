@@ -40,7 +40,7 @@ def calculate_heuristic(board):
         heurestic_AI += eclidiean_distance(position, [0,12])
     for position in player_positions:
         heurestic_Player += eclidiean_distance(position,[16,12])
-    return heurestic_AI - heurestic_Player  # +ve heur -> Ai is more far from goal hence Ai is losing and vice versa
+    return heurestic_Player - heurestic_AI  # +ve heur -> Ai is more far from goal hence Ai is losing and vice versa
 
 
 def generateStates(board,x): # takes a state and a player type(1 for player, 2 for Ai) and return all the possible states
